@@ -1,0 +1,20 @@
+hosts:
+    net_address:
+    -   135.16.16.3
+    ssh_username: root
+    ssh_port: '22'
+    ssh_password: '123456'
+    ssh_private_key: /root/.ssh/id_rsa
+    commands:
+        sys_hostname: hostname
+        mac_address: cat /sys/class/net/[^tsbvl]*/address
+        sn_number: dmidecode -s system-serial-number
+        os_type: cat /etc/redhat-release
+        device_type: echo `dmidecode -s system-manufacturer &&  dmidecode -s system-product-name`
+        cpu_type: cat /proc/cpuinfo | grep name | cut -f2 -d:| uniq -d
+        mem_total: dmidecode -t 17 | grep Size | grep Size | cut -f2 -d :| grep -v
+            "No Module Installed"
+    auth_type: password
+    scan_type: enhanced_scan
+    email: robbie_han@outlook.com
+    send_email: 'false'

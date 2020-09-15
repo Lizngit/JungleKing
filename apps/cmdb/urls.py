@@ -1,0 +1,81 @@
+from django.urls import path,include
+from cmdb import views
+from cmdb import views_code, views_scan, views_eam,views_vmware
+
+app_name = 'cmdb'
+
+urlpatterns = [
+    path('report/', views.asset_report, name='asset_report'),
+    path('report/asset_with_no_asset_id/', views.asset_with_no_asset_id, name='acquire_asset_id'),
+    path('report_test/', views.asset_report_test,name='asset_report_test'),
+    path('acquire_asset_id_test/', views.acquire_asset_id_test,name='acquire_asset_id_test'),
+    path('new_assets/approval/', views.new_assets_approval, name="new_assets_approval"),
+    path('asset_list/', views.asset_list, name="asset_list"),
+    path('asset_list/(\d+)/', views.asset_detail, name="asset_detail"),
+    path('asset_list/list/', views.get_asset_list, name="get_asset_list"),
+    path('asset_list/category/', views.asset_category, name="asset_category"),
+    path('asset_event_logs/(\d+)/', views.asset_event_logs, name="asset_event_logs"),
+    path('event_center/',views.event_center,name="event_center"),
+    path('', views.CmdbView.as_view(), name='index'),
+    path('portal/code/', views_code.CodeView.as_view(), name='portal-code'),
+    path('portal/code/create/', views_code.CodeCreateView.as_view(), name='portal-code-create'),
+    path('portal/code/list/', views_code.CodeListView.as_view(), name='portal-code-list'),
+    path('portal/code/update/', views_code.CodeUpdateView.as_view(), name='portal-code-update'),
+    path('portal/code/delete/', views_code.CodeDeleteView.as_view(), name='portal-code-delete'),
+
+    path('portal/scan_config/', views_scan.ScanConfigView.as_view(), name='portal-scan_config'),
+    path('portal/vmscan_config/', views_scan.VMScanConfigView.as_view(), name='portal-vmscan_config'),
+    path('portal/vmscan_config_manage/', views_vmware.VmwareConnectionInfoView.as_view(), name='portal-vmscan_config_manage'),
+    path('portal/vmscan_config_manage/list', views_vmware.VmwareConnectionInfoListView.as_view(),
+         name='portal-vmscan_config_manage_list'),
+    path('portal/vmscan_config_manage/update', views_vmware.VmwareConnectionInfoUpdateView.as_view(),
+         name='portal-vmscan_config_manage_update'),
+    path('portal/vmscan_config_manage/delete', views_vmware.VmwareConnectionInfoDeleteView.as_view(),
+         name='portal-vmscan_config_manage_delete'),
+    path('portal/device_scan/', views_scan.DeviceScanView.as_view(), name='portal-device_scan'),
+    path('portal/device_add/', views_scan.DeviceAddView.as_view(), name='portal-device_add'),
+    path('portal/device_scan/list/', views_scan.DeviceScanListView.as_view(), name='portal-device_scan-list'),
+    path('portal/device_scan/detail/', views_scan.DeviceScanDetailView.as_view(), name='portal-device_scan-detail'),
+    path('portal/device_scan/delete/', views_scan.DeviceScanDeleteView.as_view(), name='portal-device_scan-delete'),
+    path('portal/device_scan/exec/', views_scan.DeviceScanExecView.as_view(), name='portal-device_scan-exec'),
+    path('portal/device_scan/vm_exec/', views_scan.VMDeviceScanExecView.as_view(), name='portal-VMdevice_scan-exec'),
+    path('portal/device_scan/inbound/', views_scan.DeviceScanInboundView.as_view(), name='portal-device_scan-inbound'),
+
+    path('eam/IDC/', views_eam.IDCView.as_view(), name='eam-idc'),
+    path('eam/IDC/create/', views_eam.IDCCreateView.as_view(), name='eam-idc-create'),
+    path('eam/IDC/update/', views_eam.IDCUpdateView.as_view(), name='eam-idc-update'),
+    path('eam/IDC/list/', views_eam.IDCListView.as_view(), name='eam-idc-list'),
+    path('eam/IDC/delete/', views_eam.IDCDeleteView.as_view(), name='eam-idc-delete'),
+
+    path('eam/area/', views_eam.AreaView.as_view(), name='eam-area'),
+    path('eam/area/create/', views_eam.AreaCreateView.as_view(), name='eam-area-create'),
+    path('eam/area/update/', views_eam.AreaUpdateView.as_view(), name='eam-area-update'),
+    path('eam/area/list/', views_eam.AreaListView.as_view(), name='eam-area-list'),
+    path('eam/area/delete/', views_eam.AreaDeleteView.as_view(), name='eam-area-delete'),
+
+    path('eam/domain/', views_eam.DomainView.as_view(), name='eam-domain'),
+    path('eam/domain/create/', views_eam.DomainCreateView.as_view(), name='eam-domain-create'),
+    path('eam/domain/update/', views_eam.DomainUpdateView.as_view(), name='eam-domain-update'),
+    path('eam/domain/list/', views_eam.DomainListView.as_view(), name='eam-domain-list'),
+    path('eam/domain/delete/', views_eam.DomainDeleteView.as_view(), name='eam-domain-delete'),
+
+    path('eam/cabinet/', views_eam.CabinetView.as_view(), name='eam-cabinet'),
+    path('eam/cabinet/create/', views_eam.CabinetCreateView.as_view(), name='eam-cabinet-create'),
+    path('eam/cabinet/update/', views_eam.CabinetUpdateView.as_view(), name='eam-cabinet-update'),
+    path('eam/cabinet/list/', views_eam.CabinetListView.as_view(), name='eam-cabinet-list'),
+    path('eam/cabinet/delete/', views_eam.CabinetDeleteView.as_view(), name='eam-cabinet-delete'),
+
+    path('eam/device/', views_eam.DeviceView.as_view(), name='eam-device'),
+    path('eam/device/create/', views_eam.DeviceCreateView.as_view(), name='eam-device-create'),
+    path('eam/device/update/', views_eam.DeviceUpdateView.as_view(), name='eam-device-update'),
+    path('eam/device/list/', views_eam.DeviceListView.as_view(), name='eam-device-list'),
+    path('eam/device/delete/', views_eam.DeviceDeleteView.as_view(), name='eam-device-delete'),
+    path('eam/device/device2connection/', views_eam.Device2ConnectionView.as_view(),
+         name='eam-device-device2connection'),
+    path('eam/device/detail/', views_eam.DeviceDetailView.as_view(), name='eam-device-detail'),
+    path('eam/device/upload/', views_eam.DeviceFileUploadView.as_view(), name='eam-device-upload'),
+    path('eam/device/file_delete/', views_eam.DeviceFileDeleteView.as_view(), name='eam-device-file_delete'),
+    path('eam/device/auto_update_device_info/', views_eam.AutoUpdateDeviceInfo.as_view(),
+         name='eam-device-auto_update_device_info'),
+
+]
