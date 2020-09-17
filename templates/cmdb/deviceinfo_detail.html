@@ -86,18 +86,27 @@
                             <td>{% get_con all_user device.leader 'name' %}</td>
                         </tr>
                         <tr>
+                            <td><strong>厂商责任人</strong></td>
+                            <td>
+                                {{ device.Manufacturerleader }}
+                            </td>
+                            <td><strong>厂商联系电话</strong></td>
+                            <td>
+                                {{ device.Manufacturercontact }}</td>
+                        </tr>
+                        <tr class="info">
                             <td><strong>入库时间</strong></td>
                             <td>{{ device.add_time }}</td>
                             <td><strong>最后变更</strong></td>
                             <td>{{ device.modify_time }}</td>
                         </tr>
-                        <tr class="info">
+                        <tr>
                             <td><strong>最后操作人</strong></td>
                             <td>{{ device.changed_by.name }}</td>
                             <td><strong></strong></td>
                             <td></td>
                         </tr>
-                        <tr>
+                        <tr class="info">
                             <td><strong>备注信息</strong></td>
                             <td colspan="3">{{ device.desc }}</td>
                         </tr>

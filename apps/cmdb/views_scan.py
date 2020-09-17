@@ -139,7 +139,7 @@ class VMDeviceScanExecView(LoginRequiredMixin, View):
 class DeviceScanInboundView(LoginRequiredMixin, View):
     def post(self, request):
         ret = dict(result=False)
-        login_succeed = list(DeviceScanInfo.objects.filter(status='succeed').values())
+        login_succeed = list(DeviceScanInfo.objects.exclude(status='failed').values())
         connection_fields = [field.name for field in ConnectionAbstract._meta.fields if field.name != 'id']
         device_fields = [field.name for field in DeviceAbstract._meta.fields if field.name !=  'id']
         device_fields.append('hostname')

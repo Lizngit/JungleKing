@@ -146,6 +146,8 @@ class DeviceInfo(AbstractMode, DeviceAbstract, TimeAbstract):
     service_type = models.IntegerField(blank=True, null=True, verbose_name='服务类型')
     operation_type = models.IntegerField(blank=True, null=True, verbose_name='业务类型')
     leader = models.IntegerField(blank=True, null=True, verbose_name='责任人')
+    Manufacturerleader = models.CharField(max_length=70, blank=True, null=True, verbose_name='厂商责任人')
+    Manufacturercontact = models.CharField(max_length=70, blank=True, null=True, verbose_name='厂商联系电话')
     dev_cabinet = models.IntegerField(blank=True, null=True, verbose_name='机柜信息')
     dev_connection = models.IntegerField(blank=True, null=True, verbose_name='连接信息')
     buyDate = models.DateField(default=datetime.now, verbose_name="购买日期")

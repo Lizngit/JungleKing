@@ -131,6 +131,32 @@
                   {% endfor %}
                  </select>
                 </div>
+                </div>
+                <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label">厂商责任人</label>
+                <div class="col-sm-3">
+                  <select class="form-control select2" style="width:100%;" name="Manufacturerleader">
+                  <option {% ifequal deviceinfo.manufactur_leader '' %}selected="selected"{% endifequal %}></option>
+                  {% for code in all_code %}
+                      {% if code.parent.key == 'MANUFACTUR_LEADER' %}
+                        <option value="{{ code.value }}" {% ifequal deviceinfo.manufactur_leader code.id %}selected="selected"{% endifequal %}>
+                            {{ code.value }}</option>
+                      {% endif %}
+                  {% endfor %}
+                 </select>
+                </div>
+                <label class="col-sm-2 control-label">厂商联系电话</label>
+                <div class="col-sm-3">
+                  <select class="form-control select2" style="width:100%;" name="Manufacturercontact">
+                  <option {% ifequal deviceinfo.manufaceur_contract '' %}selected="selected"{% endifequal %}></option>
+                  {% for code in all_code %}
+                      {% if code.parent.key == 'MANUFACTUR_CONTRACT' %}
+                        <option value="{{ code.value }}" {% ifequal deviceinfo.manufaceur_contract code.id %}selected="selected"{% endifequal %}>
+                            {{ code.value }}</option>
+                      {% endif %}
+                  {% endfor %}
+                 </select>
+                </div>
             </div>
             <div class="form-group has-feedback">
                 <label class="col-sm-2 control-label">备注信息</label>

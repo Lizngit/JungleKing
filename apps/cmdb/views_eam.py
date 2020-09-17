@@ -200,7 +200,12 @@ class DeviceView(LoginRequiredMixin, BreadcrumbMixin, TemplateView):
 
 class DeviceListView(SandboxListView):
     model = DeviceInfo
-    fields = ['id', 'sys_hostname', 'sn_number', 'os_type', 'device_type', 'hostname', 'mac_address', 'leader']
+    fields = ['id', 'sys_hostname',
+              'sn_number', 'os_type',
+              'device_type', 'hostname',
+              'mac_address', 'leader',
+              'Manufacturerleader',
+              'Manufacturercontact']
 
     def get_filters(self):
         data = self.request.GET
